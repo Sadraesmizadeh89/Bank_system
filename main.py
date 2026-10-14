@@ -4,10 +4,11 @@ from transactions import Found_transfer
 from found_transaction import Found_transaction
 from account import Account
 from utils import Utils
-import json
 from save_new_account import Save
 from staf import Staf
 from loan import Loan
+import json
+import sys
 
 
 class Bank:
@@ -70,8 +71,6 @@ class Bank:
 
     def main(self):
 
-        ex = True
-
         print('<<< ATM >>>')
 
         obj_auth = AuthManager()
@@ -99,11 +98,10 @@ class Bank:
                     '6-exit'
                 )
 
+                ex = True
                 while ex:
 
-                    choice = input(
-                        'What do you want to do?(enter the number)'
-                    )
+                    choice = input('What do you want to do?(enter the number)')
 
                     if choice == '1':
 
@@ -119,10 +117,7 @@ class Bank:
 
                         obj_account = Account()
 
-                        user_request_account = input(
-                            'which one do you want?'
-                            '(account_balance / changing_password) :'
-                        )
+                        user_request_account = input('which one do you want?(account_balance / changing_password) :')
 
                         if user_request_account == 'account_balance':
 
@@ -140,10 +135,7 @@ class Bank:
 
                         obj_utils = Utils()
 
-                        user_request_utils = input(
-                            'which one do you want?'
-                            '(withraw_payment / deposit_payment) :'
-                        )
+                        user_request_utils = input('which one do you want?(withraw_payment / deposit_payment) :')
 
                         if user_request_utils == 'withraw_payment':
 
@@ -164,7 +156,8 @@ class Bank:
 
                     elif choice == '6':
 
-                        ex = False
+                        print('Bye')
+                        sys.exit()
 
                     else:
 

@@ -1,4 +1,5 @@
 import json
+import random
 
 class Loan:
 
@@ -6,6 +7,15 @@ class Loan:
         self.creat_request = creat_request
         self.salary = salary
         self.user_id = user_id
+
+        self.dump_informations = {
+            'loan_id':None,
+            'user_id':None,
+            'installments':None,
+            'amount':None,
+            'interest_rate':None,
+            'total_repayment':None
+        }
 
         with open('./loan.json', 'r') as loan:
             content = loan.read()
@@ -54,4 +64,17 @@ class Loan:
 
         print(f'your amount can be {offers}')
         amount = input('wich one do you want?')
-        
+
+        interest_rate = [4,10,15,20,24,25]
+        interest_rate = random.choice(interest_rate)
+
+        print(f'You are required to pay the bank an additional {interest_rate} as interest rate.')
+
+        total_repayment = ((interest_rate // 100) * amount) + amount
+
+        self.dump_informations['loan_id'] = 1
+        self.dump_informations['user_id'] = self.user_id
+        self.dump_informations['installments'] = installments
+        self.dump_informations['amount'] = amount
+        self.dump_informations['intrest_rate'] = interest_rate
+        self.dump_informations['total_repayment'] = total_repayment
